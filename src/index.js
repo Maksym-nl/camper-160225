@@ -1,10 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { App } from 'components/App';
-import './index.css';
-
-ReactDOM.createRoot(document.getElementById('root')).render(
+import { BrowserRouter } from 'react-router-dom';
+import { store } from './redux/store';
+import { Provider } from 'react-redux';
+import { App } from './components/App';
+// import CampersList from './CampersList';
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter basename="/camper-160225">
+      <Provider store={store}>
+        <App />
+      </Provider>
+      ,
+    </BrowserRouter>
   </React.StrictMode>
 );
