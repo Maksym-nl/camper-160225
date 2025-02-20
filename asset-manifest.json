@@ -1,13 +1,10 @@
 {
   "files": {
-    "main.css": "/camper-160225/static/css/main.7acaea2f.css",
-    "main.js": "/camper-160225/static/js/main.07d3183d.js",
+    "main.js": "/camper-160225/static/js/main.ac6393d9.js",
     "index.html": "/camper-160225/index.html",
-    "main.7acaea2f.css.map": "/camper-160225/static/css/main.7acaea2f.css.map",
-    "main.07d3183d.js.map": "/camper-160225/static/js/main.07d3183d.js.map"
+    "main.ac6393d9.js.map": "/camper-160225/static/js/main.ac6393d9.js.map"
   },
   "entrypoints": [
-    "static/css/main.7acaea2f.css",
-    "static/js/main.07d3183d.js"
+    "static/js/main.ac6393d9.js"
   ]
 }
