@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import Catalog from 'pages/catalog';
 import Home from 'pages/home';
 import { CamperCard } from './camperCard/CamperCard';
-import { Layout } from './Layout';
+import { Layout } from './layout/Layout';
 import { Features } from './features/Features';
 import { Reviews } from './reviews/Reviews';
 import { NotFound } from './notFound/NotFound';
