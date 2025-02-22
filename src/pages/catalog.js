@@ -1,13 +1,26 @@
-import React from 'react';
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { fetchCampers } from 'services/api';
+import { CamperList } from 'components/camperList/CamperList';
+import { LoadMoreBtn } from 'components/loadMoreBtn/LoadMoreBtn';
 
-import CampersList from 'components/camperList/CamperList';
-const CatalogPage = () => {
-  // useEffect(() => {}, []);
+export default function CatalogPage() {
+  const params = useParams();
+  const [campers, setCampers] = useState([]);
+  console.log(params);
+  useEffect(() => {
+    async function getCamperList() {
+      try {
+        const responce = await fetchCampers();
+        setCampers(responce.items);
+      } catch (error) {}
+    }
+    getCamperList();
+  }, []);
   return (
     <div>
-      <CampersList />
+      <CamperList campers={campers} />
+      <LoadMoreBtn />
     </div>
   );
-};
-
-export default CatalogPage;
+}

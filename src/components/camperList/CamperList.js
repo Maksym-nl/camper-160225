@@ -1,36 +1,21 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchCampers } from '../../redux/campersSlice';
-
-const CampersList = () => {
-  console.log('Вызываем fetchCampers');
-  const dispatch = useDispatch();
-  const {
-    items: campers,
-    loading,
-    error,
-  } = useSelector(state => state.campers);
-
-  useEffect(() => {
-    dispatch(fetchCampers());
-  }, [dispatch]);
-
-  if (loading) return <div>Загрузка...</div>;
-  if (error) return <div>Ошибка: {error}</div>;
-
+import { ShowMoreBtn } from 'components/showMore/ShowMore';
+export const CamperList = ({ campers }) => {
+  console.log(campers);
   return (
-    <div>
-      <h2>Список камперов</h2>
-      <ul>
-        {campers.map(camper => (
+    <ul>
+      {campers.map(camper => {
+        return (
           <li key={camper.id}>
-            <strong>{camper.name}</strong> - Возраст: {camper.age}, Опыт:{' '}
-            {camper.experience} лет
+            <p>{camper.name}</p>
+            <p>{camper.price}</p>
+            <p>{camper.rating}</p>
+            <p>{camper.location}</p>
+            <p>{camper.description}</p>
+            <img src={camper.gallery.original} alt={camper.name} width="200" />
+            <ShowMoreBtn />
           </li>
-        ))}
-      </ul>
-    </div>
+        );
+      })}
+    </ul>
   );
 };
-
-export default CampersList;
