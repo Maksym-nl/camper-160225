@@ -6,5 +6,5 @@ export const Reviews = () => {
     //HTTP-запрос
   }, []);
 
-  return <div></div>;
+  return <div>ijijopjkopk</div>;
 };
