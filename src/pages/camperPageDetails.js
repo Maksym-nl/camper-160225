@@ -4,7 +4,9 @@ import { fetchCamperById } from 'services/api';
 import { Reviews } from 'components/reviews/Reviews';
 import { Features } from 'components/features/Features';
 import { OrderForm } from 'components/orderForm/OrderForm';
-export default function CamperCard() {
+import { CamperCard } from 'components/camperCard/CamperCard';
+
+export default function CamperCardPage() {
   const [camper, setCampers] = useState([]);
   const params = useParams();
   console.log(params);
@@ -17,27 +19,11 @@ export default function CamperCard() {
     }
     getCampers();
   }, [params.id]);
-  console.log(camper);
+  // console.log(camper);
   return (
     <div>
-      <p>{camper.name}</p>
-      <ul>
-        <li>
-          <p>{camper.rating}</p>
-        </li>
-        <li>
-          <p>{camper.location}</p>
-        </li>
-      </ul>
-      <p>{camper.price}</p>
-      <ul>
-        {camper.gallery?.map((image, index) => (
-          <li key={index}>
-            <img src={image.thumb} alt={`Images ${index + 1}`} />
-          </li>
-        ))}
-      </ul>
-      <p>{camper.description}</p>
+      <CamperCard camper={camper} />
+
       <div>
         <Link>
           <Reviews />
