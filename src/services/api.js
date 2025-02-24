@@ -12,4 +12,4 @@ export const fetchCamperById = async id => {
   );
   return response.data;
 };
-console.log(fetchCamperById);
+// console.log(fetchCamperById);

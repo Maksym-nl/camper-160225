@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { fetchCampers } from 'services/api';
 import { CamperList } from 'components/camperList/CamperList';
 import { LoadMoreBtn } from 'components/loadMoreBtn/LoadMoreBtn';
+import { Equipment } from 'components/equipment/Equipment';
 
 export default function CatalogPage() {
   const params = useParams();
@@ -19,6 +20,7 @@ export default function CatalogPage() {
   }, []);
   return (
     <div>
+      <Equipment camper={campers} />
       <CamperList campers={campers} />
       <LoadMoreBtn />
     </div>
