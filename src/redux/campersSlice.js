@@ -1,42 +1,29 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import { fetchCampers } from './operation';
 
-const API_URL = 'https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers';
-
-// Асинхронное действие для загрузки камперов
-export const fetchCampers = createAsyncThunk(
-  'campers/fetchCampers',
-  async () => {
-    const response = await fetch(API_URL);
-    if (!response.ok) {
-      throw new Error('Ошибка загрузки данных');
-    }
-    return await response.json();
-  }
-);
-
-const campersSlice = createSlice({
+const handlePending = state => {
+  state.isLoading = true;
+  state.error = null;
+};
+const handleRejected = (state, action) => {
+  state.isLoading = false;
+  state.error = action.payload;
+};
+export const campersSlise = createSlice({
   name: 'campers',
   initialState: {
     items: [],
-    loading: false,
+    isLoading: false,
     error: null,
   },
-  reducers: {},
-  extraReducers: builder => {
-    builder
-      .addCase(fetchCampers.pending, state => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(fetchCampers.fulfilled, (state, action) => {
-        state.loading = false;
-        state.items = action.payload;
-      })
-      .addCase(fetchCampers.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message;
-      });
-  },
-});
 
-export default campersSlice.reducer;
+  extraReducers: builder =>
+    builder
+      .addCase(fetchCampers.fulfilled, (state, action) => {
+        state.items = action.payload.items;
+        state.isLoading = false;
+      })
+      .addCase(fetchCampers.pending, handlePending)
+      .addCase(fetchCampers.rejected, handleRejected),
+});
+export default campersSlise.reducer;

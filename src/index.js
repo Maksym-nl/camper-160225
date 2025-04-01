@@ -1,18 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
-import { store } from './redux/store';
-import { Provider } from 'react-redux';
 import { App } from './components/App';
-// import CampersList from './CampersList';
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
+import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyle } from './styles/GlobalStyle';
+import { theme } from './components/constants/theme';
+import { Container } from './components/Container/Container.styled';
+import { ToastContainer } from 'react-toastify';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter basename="/camper-160225">
-      <Provider store={store}>
-        <App />
-      </Provider>
-      ,
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <Container>
+            <App />
+            <ToastContainer />
+          </Container>
+        </ThemeProvider>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );

@@ -1,39 +1,35 @@
-import { Routes, Route } from 'react-router-dom';
-import CatalogPage from 'pages/catalog';
-import DetailsCamperPage from 'pages/camperPageDetails';
-import Home from 'pages/home';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { Layout } from './Layout/Layout';
+import { lazy, Suspense, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchCampers } from '../redux/operation';
+import { Loader } from './Loader/Loader';
 
-// import CamperCard from './camperCard/CamperCard';
-import { Layout } from './layout/Layout';
-import { Features } from '../components/features/Features';
-import { Reviews } from './reviews/Reviews';
-import { NotFound } from './notFound/NotFound';
+const Home = lazy(() => import('pages/HomePage'));
+const CatalogPage = lazy(() => import('pages/CatalogPage'));
+const DetailsPage = lazy(() => import('pages/DetailsPage'));
+const Features = lazy(() => import('components/Features/Features'));
+const Reviews = lazy(() => import('components/Reviews/Reviews'));
+
 export const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchCampers());
+  }, [dispatch]);
+
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="catalog" element={<CatalogPage />} />
-        <Route path="catalog/:id" element={<DetailsCamperPage />}>
-          <Route
-            path="features"
-            element={
-              <div>
-                <Features />
-              </div>
-            }
-          />
-          <Route
-            path="reviews"
-            element={
-              <div>
-                <Reviews />
-              </div>
-            }
-          />
+    <Suspense fallback={<Loader />}>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="campers" element={<CatalogPage />} />
+          <Route path="/campers/:id" element={<DetailsPage />}>
+            <Route path="features" element={<Features />} />
+            <Route path="reviews" element={<Reviews />} />
+          </Route>
+          <Route path="*" element={<Navigate to="/" />} />
         </Route>
-        <Route path="404" element={<NotFound />} />
-      </Route>
-    </Routes>
+      </Routes>
+    </Suspense>
   );
 };

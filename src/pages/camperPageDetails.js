@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { fetchCamperById } from 'services/api';
-import { Reviews } from 'components/reviews/Reviews';
-import { Features } from 'components/features/Features';
+import { fetchCamperById } from 'api/api';
+import { Container } from '../components/Container/Container';
+import { VehicleDetails } from '../components/VehicleDetails/VehicleDetails';
+import { Features } from '../components/Features/Features.jsx';
+import { Reviews } from '../components/Reviews/Reviews.jsx';
 import { OrderForm } from 'components/orderForm/OrderForm';
 export default function CamperCard() {
   const [camper, setCampers] = useState([]);
