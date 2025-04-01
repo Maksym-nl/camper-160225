@@ -1,10 +1,10 @@
-import { useEffect } from 'react';
-// import { useParams } from 'react-router-dom';
+// import { useEffect } from 'react';
+// // import { useParams } from 'react-router-dom';
 
-export const Reviews = () => {
-  useEffect(() => {
-    //HTTP-запрос
-  }, []);
+// export const Reviews = () => {
+//   useEffect(() => {
+//     //HTTP-запрос
+//   }, []);
 
-  return <div>ijijopjkopk</div>;
-};
+//   return <div>ijijopjkopk</div>;
+// };

@@ -9,7 +9,7 @@ import { addToFavorites, removeFavorites } from '../../redux/favoriteSlice';
 import HeartIcon from '../../img/heart.svg';
 import StarIcon from '../../img/Property 1=Pressed.svg';
 import MapIcon from '../../img/Map.svg';
-import TransmissionIcon from '../../img/diagram.svg';
+// import TransmissionIcon from '../../img/diagram.svg';
 import {
   CamperListItem,
   CamperListItemImage,
@@ -21,7 +21,7 @@ import {
   RetingWrapper,
   LocationWrapper,
   LoadMoreContainer,
-  CategoryWrapper,
+  // CategoryWrapper,
   ShowMoreContainer,
   FavoriteButton,
 } from './CamperList.styled';
@@ -112,7 +112,7 @@ export const CamperList = () => {
                 </div>
                 <Categories />
                 <ShowMoreContainer>
-                  <ShowMoreBtn id={camper.id} />
+                  <ShowMoreBtn onClick={camper.id} />
                 </ShowMoreContainer>
               </CamperListItemInfo>
             </CamperListItem>

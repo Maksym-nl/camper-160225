@@ -1,17 +1,24 @@
-import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { getCamperDetails } from '../../redux/selectors';
 
 export const Features = () => {
-  const { id } = useParams();
-  useEffect(() => {
-    //HTTP-запрос
-  }, []);
+  const camper = useSelector(getCamperDetails);
+
+  if (!camper) {
+    return null;
+  }
+
   return (
     <div>
-      <div></div>
-      <div>
-        <h3>Форма заказа</h3>
-      </div>
+      <h3>Features</h3>
+      <ul>
+        {Object.entries(camper).map(([key, value]) => {
+          if (typeof value === 'boolean' && value === true) {
+            return <li key={key}>{key}</li>;
+          }
+          return null;
+        })}
+      </ul>
     </div>
   );
 };
